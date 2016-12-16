@@ -1,7 +1,30 @@
 buildscript {
 	ext {
+
+		if (Os.isFamily(Os.FAMILY_UNIX)) {
+			os = 'linux'
+		}
+		if (Os.isFamily(Os.FAMILY_MAC)) {
+			os = 'macosx'
+		}
+		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+			os = 'windows'
+		}
+		arch = System.getProperty("os.arch");
+
+		if(arch == 'amd64'){
+			arch = 'x86_64'
+		}
+		opencvBinaryClassifer = os+'-'+arch;
+
 		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
 	}
+
+    test {
+        //Ensure you see test output on console
+        testLogging.showStandardStreams = true
+    }
+
 	repositories {
 		mavenCentral()
 		maven { url "https://repo.spring.io/snapshot" }
@@ -32,5 +55,8 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract', version: '3.03-rc1-0.11'
+    compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract', version: '3.03-rc1-0.11', classifier: opencvBinaryClassifer
+    compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.71-0.11', classifier: opencvBinaryClassifer
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
