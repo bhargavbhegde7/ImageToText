@@ -1,5 +1,35 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
+buildscript {
+    ext {
+        if (Os.isFamily(Os.FAMILY_UNIX)) {
+            os = 'linux'
+        }
+        if (Os.isFamily(Os.FAMILY_MAC)) {
+            os = 'macosx'
+        }
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            os = 'windows'
+        }
+        arch = System.getProperty("os.arch");
+
+        if(arch == 'amd64'){
+            arch = 'x86_64'
+        }
+        opencvBinaryClassifer = os+'-'+arch;
+
+        springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -8,27 +38,8 @@ jar {
     baseName = 'ImageToText'
     version = '0.0.1-SNAPSHOT'
 }
-
-ext {
-
-    if (Os.isFamily(Os.FAMILY_UNIX)) {
-        os = 'linux'
-    }
-    if (Os.isFamily(Os.FAMILY_MAC)) {
-        os = 'macosx'
-    }
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        os = 'windows'
-    }
-    arch = System.getProperty("os.arch");
-
-    if(arch == 'amd64'){
-        arch = 'x86_64'
-    }
-    opencvBinaryClassifer = os+'-'+arch;
-
-    springBootVersion = '2.0.0.BUILD-SNAPSHOT'
-}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 test {
     //Ensure you see test output on console
@@ -41,14 +52,12 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract', version: '3.03-rc1-0.11'
     compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract', version: '3.03-rc1-0.11', classifier: opencvBinaryClassifer
     compile group: 'org.bytedeco.javacpp-presets', name: 'leptonica', version: '1.71-0.11', classifier: opencvBinaryClassifer
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
 }
