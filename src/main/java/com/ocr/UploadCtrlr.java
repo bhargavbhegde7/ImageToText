@@ -31,7 +31,7 @@ public class UploadCtrlr {
             return "Couldn't initialize tesseract";
         }
 
-        lept.PIX image = pixRead(fileName);
+        lept.PIX image = pixRead("test.png");
 
         api.SetImage(image);
         outText = api.GetUTF8Text();
@@ -46,7 +46,8 @@ public class UploadCtrlr {
 
     @RequestMapping(method = POST)
     public String postImage(@RequestParam("inputImage") MultipartFile imageFile){
-        return getTextFromImage1(imageFile)+ " --- " +imageFile.getOriginalFilename();
+        //return getTextFromImage1(imageFile)+ " --- " +imageFile.getOriginalFilename();
+        return getTextFromImage("")+ " --- " +imageFile.getOriginalFilename();
     }
 
     @RequestMapping(method = GET)
