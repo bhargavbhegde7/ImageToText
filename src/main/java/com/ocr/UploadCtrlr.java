@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
 
 import static org.bytedeco.javacpp.lept.pixDestroy;
 import static org.bytedeco.javacpp.lept.pixRead;
@@ -28,15 +29,11 @@ public class UploadCtrlr {
         return "dummy text";
     }
 
-    private void convert(){
-        BufferedImage image;
-        int width;
-        int height;
+    private void convertToGreyScale(InputStream inputFile){
         try {
-            File input = new File("C:\\Users\\goodbytes\\Desktop\\Capture.jpg");
-            image = ImageIO.read(input);
-            width = image.getWidth();
-            height = image.getHeight();
+            BufferedImage image = ImageIO.read(inputFile);
+            int width = image.getWidth();
+            int height = image.getHeight();
 
             for(int i=0; i<height; i++){
 
@@ -57,7 +54,9 @@ public class UploadCtrlr {
             File ouptut = new File("grayscale.jpg");
             ImageIO.write(image, "jpg", ouptut);
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 
     public String getTextFromImage(String fileName){
@@ -82,10 +81,14 @@ public class UploadCtrlr {
     }
 
     @RequestMapping(method = POST)
-    public String postImage(@RequestParam("inputImage") MultipartFile imageFile){
-        //return getTextFromImage1(imageFile)+ " --- " +imageFile.getOriginalFilename();
-        convert();
-        return getTextFromImage("")+ " --- " +imageFile.getOriginalFilename();
+    public String postImage(@RequestParam("inputImage") MultipartFile multipartImageFile){
+
+        try{
+            convertToGreyScale(multipartImageFile.getInputStream());
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+        return "POOP";
     }
 
     @RequestMapping(method = GET)
