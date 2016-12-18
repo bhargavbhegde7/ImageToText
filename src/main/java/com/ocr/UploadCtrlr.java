@@ -7,6 +7,7 @@ import org.bytedeco.javacpp.tesseract;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -108,7 +109,7 @@ public class UploadCtrlr {
         return string;
     }
 
-    @RequestMapping(method = POST)
+    @RequestMapping(value="/upload", method = POST)
     public String postImage(@RequestParam MultipartFile multipartImageFile){
         String output = "POOP";
         try{
@@ -120,9 +121,15 @@ public class UploadCtrlr {
         return output;
     }
 
-    @RequestMapping(method = GET)
+    /*@RequestMapping(method = GET)
     public String getDocumentation(){
         return "post the image file to this url with name attribute as inputImage. " +
                 "Also set enctype attribute of the form tag as 'multipart/form-data' ";
-    }
+    }*/
+
+    /*@RequestMapping("/greeting")
+    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+        //model.addAttribute("name", name);
+        return "index";
+    }*/
 }

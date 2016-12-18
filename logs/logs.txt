@@ -22,33 +22,32 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::  (v2.0.0.BUILD-SNAPSHOT)
 
-2016-12-18 19:08:17.258  INFO 7296 --- [           main] com.ocr.ImageToTextApplication           : Starting ImageToTextApplication on bhargav with PID 7296 (D:\IdeaProjects\ImageToText\build\classes\main started by goodbytes in D:\IdeaProjects\ImageToText)
-2016-12-18 19:08:17.261  INFO 7296 --- [           main] com.ocr.ImageToTextApplication           : No active profile set, falling back to default profiles: default
-2016-12-18 19:08:17.317  INFO 7296 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a3631f8: startup date [Sun Dec 18 19:08:17 IST 2016]; root of context hierarchy
-2016-12-18 19:08:18.274  INFO 7296 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2016-12-18 19:08:18.756  INFO 7296 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
-2016-12-18 19:08:18.768  INFO 7296 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
-2016-12-18 19:08:18.769  INFO 7296 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
-2016-12-18 19:08:18.886  INFO 7296 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2016-12-18 19:08:18.886  INFO 7296 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1572 ms
-2016-12-18 19:08:19.058  INFO 7296 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
-2016-12-18 19:08:19.061  INFO 7296 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2016-12-18 19:08:19.062  INFO 7296 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2016-12-18 19:08:19.062  INFO 7296 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2016-12-18 19:08:19.062  INFO 7296 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2016-12-18 19:08:19.375  INFO 7296 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4a3631f8: startup date [Sun Dec 18 19:08:17 IST 2016]; root of context hierarchy
-2016-12-18 19:08:19.449  INFO 7296 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[],methods=[POST]}" onto public java.lang.String com.ocr.UploadCtrlr.postImage(org.springframework.web.multipart.MultipartFile)
-2016-12-18 19:08:19.450  INFO 7296 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[],methods=[GET]}" onto public java.lang.String com.ocr.UploadCtrlr.getDocumentation()
-2016-12-18 19:08:19.454  INFO 7296 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2016-12-18 19:08:19.455  INFO 7296 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2016-12-18 19:08:19.494  INFO 7296 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-12-18 19:08:19.494  INFO 7296 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-12-18 19:08:19.544  INFO 7296 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2016-12-18 19:08:19.814  INFO 7296 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2016-12-18 19:08:19.884  INFO 7296 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2016-12-18 19:08:19.890  INFO 7296 --- [           main] com.ocr.ImageToTextApplication           : Started ImageToTextApplication in 3.121 seconds (JVM running for 3.451)
-2016-12-18 19:08:30.731  INFO 7296 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
-2016-12-18 19:08:30.731  INFO 7296 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
-2016-12-18 19:08:30.750  INFO 7296 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
-test.png is deleted!
+2016-12-18 20:50:42.685  INFO 12364 --- [           main] com.ocr.ImageToTextApplication           : Starting ImageToTextApplication on bhargav with PID 12364 (D:\IdeaProjects\ImageToText\build\classes\main started by goodbytes in D:\IdeaProjects\ImageToText)
+2016-12-18 20:50:42.688  INFO 12364 --- [           main] com.ocr.ImageToTextApplication           : No active profile set, falling back to default profiles: default
+2016-12-18 20:50:42.743  INFO 12364 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@26df6e3a: startup date [Sun Dec 18 20:50:42 IST 2016]; root of context hierarchy
+2016-12-18 20:50:43.738  INFO 12364 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-12-18 20:50:44.231  INFO 12364 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-12-18 20:50:44.245  INFO 12364 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-12-18 20:50:44.246  INFO 12364 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
+2016-12-18 20:50:44.364  INFO 12364 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-12-18 20:50:44.365  INFO 12364 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1623 ms
+2016-12-18 20:50:44.532  INFO 12364 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-18 20:50:44.536  INFO 12364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-18 20:50:44.537  INFO 12364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-18 20:50:44.537  INFO 12364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-18 20:50:44.537  INFO 12364 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-18 20:50:44.851  INFO 12364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@26df6e3a: startup date [Sun Dec 18 20:50:42 IST 2016]; root of context hierarchy
+2016-12-18 20:50:44.911  INFO 12364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/upload],methods=[POST]}" onto public java.lang.String com.ocr.UploadCtrlr.postImage(org.springframework.web.multipart.MultipartFile)
+2016-12-18 20:50:44.914  INFO 12364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-18 20:50:44.914  INFO 12364 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-18 20:50:44.949  INFO 12364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-18 20:50:44.949  INFO 12364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-18 20:50:44.999  INFO 12364 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-18 20:50:45.030  INFO 12364 --- [           main] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2016-12-18 20:50:45.255  INFO 12364 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-12-18 20:50:45.315  INFO 12364 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-12-18 20:50:45.320  INFO 12364 --- [           main] com.ocr.ImageToTextApplication           : Started ImageToTextApplication in 3.1 seconds (JVM running for 3.434)
+2016-12-18 20:50:50.438  INFO 12364 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-12-18 20:50:50.438  INFO 12364 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-12-18 20:50:50.454  INFO 12364 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
 test.png is deleted!
