@@ -32,10 +32,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 public class UploadCtrlr {
 
-    private void convertToGreyScale(InputStream inputFile){
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    private BufferedImage convertToGreyScale(InputStream inputFile){
+        BufferedImage image = null;
         try {
-            BufferedImage image = ImageIO.read(inputFile);
+            image = ImageIO.read(inputFile);
             int width = image.getWidth();
             int height = image.getHeight();
 
@@ -57,58 +57,14 @@ public class UploadCtrlr {
 
             //File ouptut = new File("grayscale.jpg");
             //ImageIO.write(image, "jpg", ouptut);
-            asdf(image);
-
+            //System.out.println(getTextFromImage(image));
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Error in the opencv method");
         }
-    }
-
-    private Mat bufferedImageToMat(BufferedImage bi) {
-        Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
-        byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
-        mat.put(0, 0, data);
-        return mat;
-    }
-
-    public Mat matify(BufferedImage im) {
-        // Convert INT to BYTE
-        //im = new BufferedImage(im.getWidth(), im.getHeight(),BufferedImage.TYPE_3BYTE_BGR);
-        // Convert bufferedimage to byte array
-        byte[] pixels = ((DataBufferByte) im.getRaster().getDataBuffer())
-                .getData();
-
-        // Create a Matrix the same size of image
-        Mat image = new Mat(im.getHeight(), im.getWidth(), CvType.CV_8UC3);
-        // Fill Matrix with image values
-        image.put(0, 0, pixels);
-
         return image;
-
     }
 
-    private void asdf(BufferedImage image) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write( image, "jpg", baos );
-        baos.flush();
-        byte[] imageInByte = baos.toByteArray();
-        baos.close();
-
-        int width = image.getWidth();
-        int height = image.getHeight();
-
-        //Mat m = bufferedImageToMat(image);
-        Mat m = matify(image);
-
-        Long bytesPerPixel = m.elemSize();
-        Long bytesPerLine = m.rows()*m.elemSize();
-
-        String finalOutput = getTextFromImage(imageInByte, width, height, bytesPerPixel.intValue(), bytesPerLine.intValue());
-
-        System.out.println(finalOutput);
-    }
-
-    public String getTextFromImage(byte[] imageData, int width, int height, int bytes_per_pixel, int bytes_per_line){
+    public String getTextFromImage(BufferedImage image){
         BytePointer outText;
 
         tesseract.TessBaseAPI api = new tesseract.TessBaseAPI();
@@ -116,35 +72,52 @@ public class UploadCtrlr {
             return "Couldn't initialize tesseract";
         }
 
-        //lept.PIX image = pixRead("test.png");
+        File incomingFile = new File("test.png");
+        try {
+            ImageIO.write(image, "png", incomingFile);
+        } catch (IOException e) {
+            System.out.println("Error writing file test.png");
+        }
+        lept.PIX PIXimage = pixRead("test.png");
 
-
-        /**TODO use the below method. get width, height and bytes perpixes from opencv
-         * public native void SetImage(@Cast("const unsigned char*") byte[] imagedata, int width, int height,
-         int bytes_per_pixel, int bytes_per_line);
-         */
-
-        //api.SetImage(image);
-        api.SetImage(imageData, width, height, bytes_per_pixel, bytes_per_line);
+        api.SetImage(PIXimage);
 
         outText = api.GetUTF8Text();
-        String string = outText.getString();
+        String string = new String(outText.getString());
 
         api.End();
         outText.deallocate();
-        //pixDestroy(image);
+        pixDestroy(PIXimage);
+
+        try{
+
+            File tempSavedImage = new File("test.png");
+
+            if(tempSavedImage.delete()){
+                System.out.println(tempSavedImage.getName() + " is deleted!");
+            }else{
+                System.out.println("Delete operation is failed.");
+            }
+
+        }catch(Exception e){
+
+            System.out.println("Error in deletion");
+
+        }
 
         return string;
     }
 
     @RequestMapping(method = POST)
     public String postImage(@RequestParam MultipartFile multipartImageFile){
+        String output = "POOP";
         try{
-            convertToGreyScale(multipartImageFile.getInputStream());
+            BufferedImage bufImage = convertToGreyScale(multipartImageFile.getInputStream());
+            output = getTextFromImage(bufImage);
         }catch(Exception e){
-            System.out.println("Error");
+            System.out.println("Error in the controller");
         }
-        return "POOP";
+        return output;
     }
 
     @RequestMapping(method = GET)
