@@ -121,11 +121,11 @@ public class UploadCtrlr {
         return output;
     }
 
-    /*@RequestMapping(method = GET)
+    @RequestMapping(value="/upload", method = GET)
     public String getDocumentation(){
-        return "post the image file to this url with name attribute as inputImage. " +
+        return "post the image file to this url with name attribute as multipartImageFile. " +
                 "Also set enctype attribute of the form tag as 'multipart/form-data' ";
-    }*/
+    }
 
     /*@RequestMapping("/greeting")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
