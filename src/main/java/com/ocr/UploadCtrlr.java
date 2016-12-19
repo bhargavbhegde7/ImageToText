@@ -73,13 +73,13 @@ public class UploadCtrlr {
             return "Couldn't initialize tesseract";
         }
 
-        File incomingFile = new File("test.png");
+        File incomingFile = new File("tempImage.png");
         try {
             ImageIO.write(image, "png", incomingFile);
         } catch (IOException e) {
             System.out.println("Error writing file test.png");
         }
-        lept.PIX PIXimage = pixRead("test.png");
+        lept.PIX PIXimage = pixRead("tempImage.png");
 
         api.SetImage(PIXimage);
 
@@ -92,7 +92,7 @@ public class UploadCtrlr {
 
         try{
 
-            File tempSavedImage = new File("test.png");
+            File tempSavedImage = new File("tempImage.png");
 
             if(tempSavedImage.delete()){
                 System.out.println(tempSavedImage.getName() + " is deleted!");
